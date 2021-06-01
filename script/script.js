@@ -1,4 +1,4 @@
-
+'use strict'
 
 let money, income, addExprenses, deposit, mission, period;
 
@@ -13,35 +13,22 @@ period = 12;
 
 // применяю методы и свойства
 
-console.log(typeof money);
-console.log(typeof income);
-console.log(typeof deposit);
+let showTypeOf = function(data) {
+    console.log(typeof(data));
+}
 
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
 
-console.log('Период равен ' + period + ' месяцев');
-console.log('Цель заработать ' + mission + ' рублей');
+// объявление дополнительных переменных
 
-// запрос на перечисление расходов
-
-addExprenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-console.log(addExprenses);
-console.log(addExprenses.length);
-console.log(addExprenses.toLowerCase());
-console.log(addExprenses.split (', '));
-
-// запрос на проверку депозита
-
-deposit = confirm('Есть ли у вас депозит в банке?');
-console.log(deposit);
+let expenses1, expenses2, amount1, amount2, budgetDay, executionMission, accumulatedMonth;
 
 // запрос о месячном доходе
 
 money = +prompt('Ваш месячный доход?');
-console.log(money);
-
-// объявление дополнительных переменных
-
-let expenses1, expenses2, amount1, amount2, budgetDay, budgetMonth, executionMission;
+console.log('Ваш доход', money);
 
 // запросы о расходах
 
@@ -50,30 +37,53 @@ amount1 = +prompt('Во сколько это обойдется?');
 expenses2 = prompt('Введите обязательную статью расходов?');
 amount2 = +prompt('Во сколько это обойдется?');
 
-// рассчет бюджета на месяц
+// функция рассчета расходов за месяц
 
-budgetMonth = money - amount1 - amount2;
-console.log('Бюджет на месяц: ', budgetMonth);
+let getExpensesMonth = function(sum1, sum2) {
+    return sum1 + sum2;
+}
+
+console.log( 'Расходы за месяц ', getExpensesMonth(amount1, amount2));
+
+// запрос на перечисление расходов
+
+addExprenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
+console.log(addExprenses.split (', '));
+
+// функция расчета накоплений за месяц
+
+let getAccumulatedMonth = function(sum1, sum2) {
+    return sum1 - sum2;
+}
+
+accumulatedMonth = getAccumulatedMonth(money, getExpensesMonth(amount1, amount2));
 
 // расчет срока доститижения цели
 
-executionMission = Math.ceil(mission / budgetMonth);
-console.log('Цель будет достигнута за ' + executionMission + ' месяцев(-а)'); 
+let getTargetMonth = function(sum1, sum2) {
+    return Math.ceil(sum1 / sum2);
+}
+
+getTargetMonth(mission, accumulatedMonth);
+console.log('Цель будет достигнута за ' + getTargetMonth(mission, accumulatedMonth) + ' месяцев(-а)'); 
 
 // расчет бюджета на день
 
-budgetDay = Math.floor(budgetMonth / 30);
+budgetDay = Math.floor(accumulatedMonth / 30);
 console.log('Бюджет на день ', budgetDay);
 
 // сравнение уровня дохода
 
-if (budgetDay >= 1200) {
-    console.log('У вас высокий уровень дохода');
-} else if (budgetDay >= 600) {
-    console.log('У вас средний уровень дохода');
-} else if (budgetDay >= 0) {
-    console.log('К сожалению у вас уровень дохода ниже среднего');
-} else {
- console.log('Что то пошло не так');
+let getStatusIncome = function() {
+    if (budgetDay >= 1200) {
+        return ('У вас высокий уровень дохода');
+    } else if (budgetDay >= 600) {
+        return ('У вас средний уровень дохода');
+    } else if (budgetDay >= 0) {
+        return ('К сожалению у вас уровень дохода ниже среднего');
+    } else {
+     return ('Что то пошло не так');
+    }    
 }
-   
+
+console.log(getStatusIncome());
