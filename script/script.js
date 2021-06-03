@@ -33,7 +33,7 @@ showTypeOf(deposit);
 
 // объявление дополнительных переменных
 
-let expenses1, expenses2, budgetDay, executionMission, accumulatedMonth;
+let budgetDay, executionMission, accumulatedMonth;
 
 // вывод месячного дохода
 
@@ -41,32 +41,25 @@ console.log('Ваш доход', money);
 
 // функция рассчета расходов за месяц
 let count;
-
+let expenses = [];
 let getExpensesMonth = function() {
     let sum = 0;
 
     for (let i = 0; i < 2; i++) {
 
-            if (i === 0) {
-                expenses1 = prompt('Введите обязательную статью расходов?', 'бензин');
-                while (!isNumber(count)) {
-                    count = prompt('Во сколько это обойдется?');
-                }
-
-            } else if (i ===1) {
-                expenses2 = prompt('Введите обязательную статью расходов?', 'алименты');
-                do{
-                    count = prompt('Во сколько это обойдется?');
-                }
-                while (!isNumber(count));
-                }    
-            }
+            expenses[i] = prompt('Введите обязательную статью расходов?');
+                
+            do {
+               count = prompt('Во сколько это обойдется?');
+           }
+           while (!isNumber(count));
+                      
         sum+= +count;
-    
+    }
     console.log(sum);
     return sum;
-};
 
+}
 let expensesAMount = getExpensesMonth();
 
 console.log( 'Расходы за месяц ', expensesAMount);
@@ -74,8 +67,8 @@ console.log( 'Расходы за месяц ', expensesAMount);
 // запрос на перечисление расходов
 
 addExprenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-console.log(addExprenses.toLowerCase());
-console.log(addExprenses.split (', '));
+console.log(addExprenses.toLowerCase().split (', '));
+
 
 // функция расчета накоплений за месяц
 
