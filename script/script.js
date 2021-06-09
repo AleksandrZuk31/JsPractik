@@ -54,13 +54,13 @@ let appData = {
               cashExpenses = prompt('Во сколько это обойдется?');
           }
           while (isNaN(cashExpenses) || cashExpenses === '' || cashExpenses === null);
-        appData.expenses[itemExpenses] = cashExpenses;
+        appData.expenses[itemExpenses] = +cashExpenses;
         }
         },
     getExpensesMonth : function() {
         let sum = 0;
         for (let key in appData.expenses) {
-            sum += +appData.expenses[key];
+            sum += appData.expenses[key];
         } return sum;
     },
     getBudget : function(sum1, sum2) {
@@ -131,3 +131,63 @@ appData.getInfoDeposit();
 
 appData.addExpenses = appData.addExpenses.map(n => `${n[0].toUpperCase()}${n.slice(1)}`).join(', ');
 console.log(appData.addExpenses);
+
+// кнопка Рассчитать
+
+const getStart = document.getElementById('start');
+console.log(getStart);
+
+// кнопки "+"
+
+const getPlusIncome = document.getElementsByTagName('button')[0];
+console.log(getPlusIncome);
+const getPlusExpenses = document.getElementsByTagName('button')[1];
+console.log(getPlusExpenses);
+
+// Чекбокс
+
+const getCheckbox = document.querySelector('#deposit-check');
+console.log(getCheckbox);
+
+// Поля ввода возможных доходов
+
+const getAdditionalIncomeOne = document.querySelectorAll('.additional_income-item')[0];
+console.log(getAdditionalIncomeOne);
+const getAdditionalIncomeTwo = document.querySelectorAll('.additional_income-item')[1];
+console.log(getAdditionalIncomeTwo);
+
+// Элементы правой части программы
+
+const getBudgetMonthValue = document.getElementsByClassName('result-total')[0];
+console.log(getBudgetMonthValue);
+const getBudgetDayValue = document.getElementsByClassName('result-total')[1];
+console.log(getBudgetDayValue);
+const getExpensesMonthValue = document.getElementsByClassName('result-total')[2];
+console.log(getExpensesMonthValue);
+const getAdditionalIncomeValue = document.getElementsByClassName('result-total')[3];
+console.log(getAdditionalIncomeValue);
+const getAdditionalExpensesValue = document.getElementsByClassName('result-total')[4];
+console.log(getAdditionalExpensesValue);
+const getIncomePeriodValue = document.getElementsByClassName('result-total')[5];
+console.log(getIncomePeriodValue);
+const getTargetMonthValue = document.getElementsByClassName('result-total')[6];
+console.log(getTargetMonthValue);
+
+// Оставшиеся поля
+
+const getSalaryAmount = document.querySelector('.salary-amount');
+console.log(getSalaryAmount);
+const getIncomeTitle = document.querySelector('.income-title');
+console.log(getIncomeTitle);
+const getIncomeAmount = document.querySelector('.income-amount');
+console.log(getIncomeAmount);
+const getExpensesTitle = document.querySelector('.expenses-title');
+console.log(getExpensesTitle);
+const getExpensesAmount = document.querySelector('.expenses-amount');
+console.log(getExpensesAmount);
+const getAdditionalExpensesItem= document.querySelector('.additional_expenses-item');
+console.log(getAdditionalExpensesItem);
+const getTargetAmount = document.querySelector('.target-amount');
+console.log(getTargetAmount);
+const getPeriodSelect = document.querySelector('.period-select');
+console.log(getPeriodSelect);
