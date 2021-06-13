@@ -179,7 +179,7 @@ let appData = {
         } 
       };
 // обработчики событий
-  salaryAmount.addEventListener('oninput', btnStart);
+  salaryAmount.addEventListener('input', btnStart);
   start.addEventListener('click', appData.start);
   plusExpenses.addEventListener('click', appData.addExpensesBlock);
   plusIncome.addEventListener('click', appData.addIncomeBlock);
