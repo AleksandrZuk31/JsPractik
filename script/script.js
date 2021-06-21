@@ -5,13 +5,11 @@ const start = document.getElementById('start'),
 // кнопка Сбросить
 cancel = document.getElementById('cancel');
 // кнопки "+"
-let plusIncome = document.getElementsByTagName('button')[0],
+const plusIncome = document.getElementsByTagName('button')[0],
 plusExpenses = document.getElementsByTagName('button')[1],
 plusBtn = document.querySelectorAll('.btn_plus'),
 // Чекбокс
 depositCheck = document.querySelector('#deposit-check'),
-// Поля ввода возможных доходов
-additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
 // Элементы правой части программы
 budgetMonthValue = document.getElementsByClassName('result-total')[0],
 budgetDayValue = document.getElementsByClassName('result-total')[1],
@@ -24,19 +22,19 @@ targetMonthValue = document.getElementsByClassName('result-total')[6],
 salaryAmount = document.querySelector('.salary-amount'),
 expensesTitle = document.querySelector('.expenses-title'),
 expensesAmount = document.querySelector('.expenses-amount'),
-expensesItems = document.querySelectorAll('.expenses-items'),
-additionalExpensesItem = document.querySelector('.additional_expenses-item'),
 targetAmount = document.querySelector('.target-amount'),
 periodSelect = document.querySelector('.period-select'),
 periodAmount = document.querySelector('.period-amount'),
 incomeTitle = document.querySelector('.income-title'),
-incomeItem = document.querySelectorAll('.income-items'),
 incomeAmount = document.querySelector('.income-amount'),
-field = document.querySelectorAll('[type="text"]'),
 depositBank = document.querySelector('.deposit-bank'),
 depositAmount = document.querySelector('.deposit-amount'),
 depositPercent = document.querySelector('.deposit-percent');
-
+let incomeItem = document.querySelectorAll('.income-items'),
+additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+field = document.querySelectorAll('[type="text"]'),
+additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
+expensesItems = document.querySelectorAll('.expenses-items');
 // создаем класс appData
 class AppData {
   constructor() {
@@ -129,11 +127,11 @@ class AppData {
   }
     addExpensesBlockReset (){
       let expensesItems = document.querySelectorAll('.expenses-items');
-      if(expensesItems.length != 1){
+      if(expensesItems.length !== 1){
         for (let i = 1; i < expensesItems.length; i++) {
         expensesItems[i].remove();
-        }; 
-      };
+        } 
+      }
       this.expensesItems = [],
       plusExpenses.style.display = 'block';
   }
@@ -148,7 +146,7 @@ class AppData {
   }
     addIncomeBlockReset (){
       let incomeItems = document.querySelectorAll('.income-items');
-      if(incomeItems.length != 1){
+      if(incomeItems.length !== 1){
         for (let i = 1; i < incomeItems.length; i++) {
         incomeItems[i].remove();
         }; 
@@ -277,6 +275,7 @@ class AppData {
       depositCheck.checked = false, 
       depositBank.style.display = 'none';
       depositAmount.style.display = 'none';
+      depositPercent.style.display = 'none';
       depositBank.value = '';
       depositAmount.value = '';
       this.deposit = false;
@@ -310,19 +309,3 @@ class AppData {
 
 const appData = new AppData();
 appData.eventListeners();
-
-
-// Пока оставил, в задании ничего не сказано было, хотя надо доделать)
- 
-// расчет срока доститижения цели
-
-// appData.getTargetMonth(appData.mission, appData.budgetMonth);
-// if (appData.getTargetMonth(appData.mission, appData.budgetMonth) >0) {
-// console.log('Цель будет достигнута за ' + appData.getTargetMonth(appData.mission, appData.budgetMonth) + ' месяцев(-а)');     
-// } else {
-//  console.log('Цель не будет достигнута'); 
-// }
-
-//appData.getInfoDeposit();
-
-//appData.addExpenses = appData.addExpenses.map(n => `${n[0].toUpperCase()}${n.slice(1)}`).join(', ');
